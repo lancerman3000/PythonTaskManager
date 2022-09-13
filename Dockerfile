@@ -26,11 +26,15 @@ RUN apt-get update -qq \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	&& truncate -s 0 /var/log/*log
 
+RUN apt-get update && apt-get -y install libpq-dev gcc && pip install psycopg2
+
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > get-poetry.py \
 	&& python get-poetry.py --version 1.1.7 \
 	&& rm get-poetry.py
 
 ENV PATH $PATH:/root/.poetry/bin
+
+RUN pip install django
 
 RUN poetry config virtualenvs.create false
 ENV PATH $PATH:/root/.poetry/bin
