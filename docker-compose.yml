@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       &api-volumes
+      - ./:/app
       - ~/.ssh:/root/.ssh
       - ~/.bash_history:/root/.bash_history
     ports:
