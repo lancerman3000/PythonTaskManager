@@ -9,7 +9,7 @@ RUN apt-get update -qq \
 	apt-transport-https \
 	build-essential \
 	ca-certificates \
-	curl \
+	curl\
 	git \
 	gnupg \
 	jq \
@@ -26,6 +26,7 @@ RUN apt-get update -qq \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	&& truncate -s 0 /var/log/*log
 
+RUN apt-get update && apt-get -y install nano mc
 RUN apt-get update && apt-get -y install libpq-dev gcc && pip install psycopg2
 
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > get-poetry.py \
